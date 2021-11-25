@@ -1,9 +1,9 @@
 <?php
 
-namespace blz;
+namespace dhl;
 
-use blz\exampleClient;
-use blz\exampleClassmap;
+use GuzzleHttp\Client;
+use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
@@ -11,17 +11,16 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 class exampleClientFactory
 {
 
-    public static function factory(string $wsdl) : \blz\exampleClient
+    public static function factory(string $wsdl) : \dhl\exampleClient
     {
-        $engine = ExtSoapEngineFactory::fromOptions(
-            ExtSoapOptions::defaults($wsdl, [])
-                ->withClassMap(exampleClassmap::getCollection())
-        );
+        $httpClient = new Client();
+
+        $handler = HttPlugHandle::createForClient($httpClient);
+        $engine = ExtSoapEngineFactory::fromOptionsWithHandler(ExtSoapOptions::defaults($wsdl, ['soap_version' => SOAP_1_1])->withClassMap(exampleClassmap::getCollection()), $handler);
+
         $eventDispatcher = new EventDispatcher();
 
         return new exampleClient($engine, $eventDispatcher);
     }
-
-
 }
 
