@@ -5,7 +5,6 @@ use Http\Promise\Promise;
 use Phpro\SoapClient\Middleware\Middleware;
 use Phpro\SoapClient\Xml\SoapXml;
 use Psr\Http\Message\RequestInterface;
-use shipment\business\DhlConfig;
 
 /**
  * Middleware which adjusts the host soap request for the specific needs of the DHL soap service.

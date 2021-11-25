@@ -12,7 +12,7 @@ class exampleClientFactory
 {
     public static function factory(string $wsdl) : \dhl\exampleClient
     {
-        $httpClient = new Client(['verify'          => false,]);
+        $httpClient = new Client(['verify' => false,]);
 
         $handler = HttPlugHandle::createForClient($httpClient);
         $handler->addMiddleware(new DemoMiddleware());
