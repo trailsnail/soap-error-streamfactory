@@ -86,6 +86,17 @@ $createShipmentOrderRequest = new CreateShipmentOrderRequest(
     '910-300-400',
     0);
 
-$result = $exampleClient->createShipmentOrder($createShipmentOrderRequest);
+try {
+    $exampleClient->createShipmentOrder($createShipmentOrderRequest);
 
-dump($result);
+    echo "this should never happen\n";
+
+} catch( \Phpro\SoapClient\Exception\SoapException $exception ) {
+
+    if ($exception->getMessage() == 'looks like we got no XML document') {
+        echo "works like expected!\n";
+    } else {
+        echo "unable to process request!\n";
+    }
+}
+

@@ -10,17 +10,9 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 class exampleClientFactory
 {
-
-    const DHL_SOAP_HOST = 'cig.dhl.de';
-
-    const DHL_API_USER = 'ComplexGmbHCoKG';
-
-    const DHL_API_PASSWORD = '!v3cA665bVygcBkD$*';
-
-
     public static function factory(string $wsdl) : \dhl\exampleClient
     {
-        $httpClient = new Client(['auth' => [self::DHL_API_USER, self::DHL_API_PASSWORD],'verify'          => false,]);
+        $httpClient = new Client(['verify'          => false,]);
 
         $handler = HttPlugHandle::createForClient($httpClient);
         $handler->addMiddleware(new DemoMiddleware());
