@@ -41,7 +41,7 @@ t()
 Like a wild boar in the forest, we tried various debug outputs in the working setup and in the faulty setup and came to the following result:
 
 Once `nyholm/psr7` was installed, `Phpro\SoapClient\Soap\HttpBinding\Builder\Psr7RequestBuilder` is used with `Nyholm\Psr7\Factory\HttplugFactory` as `streamFactory`.
-Without `nyholm/psr7`, `Http\Message\StreamFactory\GuzzleStreamFactory is used.
+Without `nyholm/psr7`, `Http\Message\StreamFactory\GuzzleStreamFactory` is used.
 
 And that's the point where we don't know what to do.
 The question is: why does `$stream->getContents()` no longer return a result?
