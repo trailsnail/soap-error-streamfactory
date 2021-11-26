@@ -7,7 +7,7 @@ More details in the next step
 
 
 ### The happy path
-- checkout this reporsitory
+- clone/fork/checkout this repository
 - run `composer install`
 - execute `php example.php` in command line
 - you will see `works like expected!` in console
